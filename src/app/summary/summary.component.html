@@ -1,0 +1,85 @@
+<div id="summary" class="form-box">
+  <div class="form-top-simple">
+    <h2>Saldo: {{ summary.amount | currency:'PLN':'1.2-2' }}</h2>
+  </div>
+  <div class="form-bottom">
+    <div class="row justify-content-center summary">
+      <div class="col-6 main-box">
+        <div class="small-box">
+          <h4 class="mb-4">Obecny miesiąc
+            <div class="amount-big" [ngClass]="{'profit': (summary.income >= summary.bills),
+            'loss': (summary.income < summary.bills)}">
+              {{summary.income - summary.bills | currency:'PLN':'1.2-2' }}
+            </div>
+          </h4>
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-lg-6">
+              <h5 class="mb-3">
+                Zarobki
+              </h5>
+              <h6 class="mb-3">
+                <div>
+                  {{ summary.income | currency:'PLN':'1.2-2' }} |
+
+                  <div class="amount" [ngClass]="{'profit': (summary.income >= summary.lastMonthIncome),
+            'loss': (summary.income < summary.lastMonthIncome)}">
+                    <i class="fas fa-caret-up" *ngIf="(summary.income >= summary.lastMonthIncome)"></i>
+                    <i class="fas fa-caret-down" *ngIf="(summary.income < summary.lastMonthIncome)"></i>
+                    {{(summary.income - summary.lastMonthIncome) / summary.lastMonthIncome * 100 | number:'1.2-2' }}%
+                  </div>
+                </div>
+              </h6>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+              <h5 class="mb-3">
+                Wydatki
+              </h5>
+              <h6>
+                <div>
+                  {{ summary.bills | currency:'PLN':'1.2-2' }} |
+
+                  <div class="amount" [ngClass]="{'profit': (summary.bills <= summary.lastMonthBills),
+          'loss': (summary.bills > summary.lastMonthBills)}">
+                    <i class="fas fa-caret-up" *ngIf="(summary.bills <= summary.lastMonthBills)"></i>
+                    <i class="fas fa-caret-down" *ngIf="(summary.bills > summary.lastMonthBills)"></i>
+                    {{(summary.bills - summary.lastMonthBills) / summary.lastMonthBills * 100 | number:'1.2-2' }}%
+                  </div>
+                </div>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 main-box">
+        <div class="small-box">
+          <h4 class="mb-4">
+            Poprzedni miesiąc
+            <div class="amount-big" [ngClass]="{'profit': (summary.lastMonthIncome >= summary.lastMonthBills),
+                'loss': (summary.lastMonthIncome < summary.lastMonthBills)}">
+              {{summary.lastMonthIncome - summary.lastMonthBills | currency:'PLN':'1.2-2' }}
+            </div>
+          </h4>
+          <div class="row justify-content-center">
+            <div class="col-xs-12 col-lg-6">
+              <h5 class="mb-3">
+                Zarobki
+              </h5>
+              <h6 class="mb-3">
+                {{ summary.lastMonthIncome | currency:'PLN':'1.2-2' }}
+              </h6>
+            </div>
+            <div class="col-xs-12 col-lg-6">
+              <h5 class="mb-3">
+                Wydatki
+              </h5>
+              <h6>
+                {{ summary.lastMonthBills | currency:'PLN':'1.2-2' }}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

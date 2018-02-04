@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+
+        <div class="form-box">
+            <div class="form-top">
+                <div class="form-top-left">
+                    <h2>Logowanie</h2>
+                </div>
+                <div class="form-top-right">
+                    <i class="fa fa-lock"></i>
+                </div>
+            </div>
+            <div class="form-bottom">
+                <form class="login-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="email">E-mail</label>
+                        <input type="email" [(ngModel)]="loginData.email" name="email" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Hasło</label>
+                        <input type="password" [(ngModel)]="loginData.password" name="password" placeholder="Hasło" class="form-control">
+                    </div>
+                    <button type="submit" (click)="logIn()" class="btn btn-info">Zaloguj się!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+        <div class="form-box">
+            <div class="form-top">
+                <div class="form-top-left">
+                    <h2>Rejestracja</h2>
+                </div>
+                <div class="form-top-right">
+                    <i class="fa fa-pencil-alt"></i>
+                </div>
+            </div>
+            <div class="form-bottom">
+                <form class="registration-form">
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Email</label>
+                        <input type="email" [(ngModel)]="registerData.email" name="email" placeholder="Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email-second">Powtórz email</label>
+                        <input type="email" [(ngModel)]="registerData.emailRepeat" name="email-second" placeholder="Powtórz email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password">Hasło</label>
+                        <input type="password" [(ngModel)]="registerData.password" name="password" placeholder="Hasło" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password-second">Powtórz hasło</label>
+                        <input type="password" [(ngModel)]="registerData.passwordRepeat" name="password-second" placeholder="Powtórz hasło" class="form-control">
+                    </div>
+
+                    <button type="submit" (click)="register()" class="btn btn-info">Zarejestruj się!</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

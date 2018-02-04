@@ -1,0 +1,14 @@
+button {
+    white-space: normal;
+    margin: 0px;
+
+}
+
+.buttons {
+    padding: 5px 10px;
+}
+
+.operation-button {
+    padding-left: 5px;
+    padding-right: 5px;
+}

@@ -1,0 +1,30 @@
+<div class="form-box mb-3">
+    <div class="form-top-simple">
+        <h3>{{listTitle}}</h3>
+    </div>
+    <div class="form-bottom">
+        <div class="placeholder" *ngIf="!list.length">Brak operacji</div>
+        <div class="list-item row justify-content-center" *ngFor="let operation of list" [ngClass]="{'income': operation.income, 'bill': !operation.income}"
+            (click)="operationDetails(operation._id)">
+            <div class="date col-4 col-sm-2">
+                <div *ngIf="!operation.cyclic">
+                    {{operation.date | date:'yyyy/MM/dd'}}
+                </div>
+            </div>
+            <div class="desc col-8 col-sm-4">{{operation.description}}</div>
+            <div class="amount col-5 col-sm-2">{{operation.amount | currency:'PLN':'1.2-2' }}</div>
+            <div class="management col-7 col-sm-4">
+                <button type="button" class="btn btn-info" (click)="$event.stopPropagation();operationDetails(operation._id)">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button *ngIf="operation.cyclic" type="button" class="btn btn-success" (click)="$event.stopPropagation();addCycleBasedOperation(operation)">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button type="button" class="btn btn-danger" (click)="$event.stopPropagation();deleteOperation(operation)">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

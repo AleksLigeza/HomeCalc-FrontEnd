@@ -1,0 +1,52 @@
+h2 {
+    color: #ddd
+}
+
+h4 {
+    height: 70px;
+    line-height: 30px;
+}
+
+h4, h5, h6, h7 {
+    text-align: center;
+}
+
+.amount{
+    text-align: center;
+    font-size: 12px;
+    display: inline;
+}
+
+.amount-big {
+    text-align: center;
+    font-size: 20px;
+}
+
+.profit {
+    color: green;
+}
+
+.loss {
+    color: red;
+}
+
+.small-box {
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 0px;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+    text-align: left;
+}
+
+.main-box {
+    padding: 5px;
+}
+
+.summary {
+    padding: 0 5px;
+}
+
+.form-bottom {
+    padding: 10px 20px;
+}

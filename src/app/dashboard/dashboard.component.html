@@ -1,0 +1,23 @@
+<app-summary></app-summary>
+
+<div class="row justify-content-center mb-3 buttons">
+    <div class="col-6 operation-button">
+        <button type="button" class="btn btn-success btn-block btn-bold" routerLink="/details/new">Dodaj operacje</button>
+    </div>
+    <div class="col-6 operation-button">
+        <button type="button" class="btn btn-danger btn-block btn-bold" routerLink="/details/newCycle">Dodaj operację zdefiniowaną</button>
+    </div>
+</div>
+
+<app-operation-list [list]='historyShortcut' [listTitle]="'Ostatnie operacje'"></app-operation-list>
+
+<div class="row mb-3">
+    <div class="col-12">
+        <button type="button" class="btn btn-info btn-block" routerLink="/history">Wyświetl pełną historię</button>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-12">
+        <button type="button" class="btn btn-info btn-block" routerLink="/cycles">Wyświetl operacje zdefiniowane</button>
+    </div>
+</div>

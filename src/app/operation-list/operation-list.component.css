@@ -1,0 +1,72 @@
+.bill {
+    background-color: rgba(220, 53, 69, 0.75)
+}
+
+.income {
+    background-color: rgba(40, 167, 69, 0.75)
+}
+
+.bill:hover {
+    background-color: rgba(220, 53, 69, 0.9)
+}
+
+.income:hover {
+    background-color: rgba(40, 167, 69, 0.9)
+}
+
+.btn {
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.list-item {
+    padding: 5px;
+    margin: 2px 0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.placeholder {
+    text-align: center;
+    color: gray;
+}
+
+.form-bottom {
+    padding: 15px;
+}
+
+@media (max-width: 575px) {
+    .management, .desc {
+        text-align: right !important;
+    }
+
+    .amount, .date {
+        text-align: left !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .management, .amount {
+        text-align: right !important;
+    }
+
+    .desc, .date {
+        text-align: left !important;
+    }
+}
+
+/* 
+  .bill {
+    background-color: #f8d7da
+}
+.income {
+    background-color: #d4edda
+}
+
+.bill:hover {
+    background-color: #f1dee0;
+}
+
+.income:hover {
+    background-color: #dae6dd;
+} */

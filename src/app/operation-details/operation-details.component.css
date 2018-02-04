@@ -1,0 +1,15 @@
+.form-bottom {
+    padding-top: 0px;
+}
+
+.form-top-right {
+    padding-top: 20px;
+}
+
+.form-top-left {
+    padding-top: 15px;
+}
+
+.col-xs-12 > .btn {
+    margin: 5px 0px;
+}
