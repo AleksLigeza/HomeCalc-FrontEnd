@@ -25,8 +25,8 @@ export class OperationDetailsComponent implements OnInit {
     private alertService: AlertService,
     private router: Router
   ) {
+
     this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
       if (e instanceof NavigationEnd) {
         this.initialiseInvites();
       }

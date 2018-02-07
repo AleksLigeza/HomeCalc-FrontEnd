@@ -12,13 +12,16 @@
             </div>
             <div class="form-bottom">
                 <form class="login-form">
-                    <div class="form-group">
-                        <label class="sr-only" for="email">E-mail</label>
-                        <input type="email" [(ngModel)]="loginData.email" name="email" placeholder="Email" class="form-control">
+                    <div class="form-group" [class.has-error]="loginEmail.invalid && loginEmail.touched">
+                        <label class="sr-only control-label" for="loginEmail">E-mail</label>
+                        <input #loginEmail="ngModel" required email class="form-control" name="loginEmail" placeholder="Email" [(ngModel)]="loginData.email">
+                        <div *ngIf="loginEmail.invalid && loginEmail.touched" class="alert alert-danger">
+                            Email is required, and must be at least 3 characters.
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password">Hasło</label>
-                        <input type="password" [(ngModel)]="loginData.password" name="password" placeholder="Hasło" class="form-control">
+                    <div class="form-group" [class.has-error]="loginPassword.invalid && loginPassword.touched">
+                        <label class="sr-only control-label" for="loginPassword">Hasło</label>
+                        <input #loginPassword="ngModel" required type="password" class="form-control" name="loginPassword" placeholder="Hasło"  [(ngModel)]="loginData.password">
                     </div>
                     <button type="submit" (click)="logIn()" class="btn btn-info">Zaloguj się!</button>
                 </form>
@@ -40,11 +43,11 @@
                 <form class="registration-form">
                     <div class="form-group">
                         <label class="sr-only" for="email">Email</label>
-                        <input type="email" [(ngModel)]="registerData.email" name="email" placeholder="Email" class="form-control">
+                        <input email [(ngModel)]="registerData.email" name="email" placeholder="Email" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="email-second">Powtórz email</label>
-                        <input type="email" [(ngModel)]="registerData.emailRepeat" name="email-second" placeholder="Powtórz email" class="form-control">
+                        <input email [(ngModel)]="registerData.emailRepeat" name="email-second" placeholder="Powtórz email" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="password">Hasło</label>
