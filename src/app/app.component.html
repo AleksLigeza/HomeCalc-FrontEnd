@@ -1,13 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" routerLink="/">HomeCalc</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link" routerLink="/dashboard">Panel</a>
+            </li>
+            <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link" routerLink="/history">Historia</a>
+            </li>
+            <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link" routerLink="/cycles">Operacje zdefiniowane</a>
+            </li>
+            <li class="nav-item" *ngIf="isAuthenticated">
+                <a class="nav-link" routerLink="/settings">Konto</a>
+            </li>
+        </ul>
+        <span class="navbar-text" *ngIf="isAuthenticated">
+            <a class="nav-link" routerLink="" (click)="logOut()">Wyloguj</a>
+        </span>
+    </div>
+</nav>
 <div class="container">
     <div class="text-center">
-        <h1>{{title}}</h1>
-        <nav *ngIf="isAuthenticated">
-            <a routerLink="/dashboard">Dashboard</a> |
-            <a routerLink="/history">History</a> |
-            <a routerLink="/cycles">Cycles</a> |
-            <a routerLink="/settings">Settings</a> |
-            <a routerLink="" (click)="logOut()">Logout</a>
-        </nav>
         <app-alert></app-alert>
         <router-outlet></router-outlet>
     </div>

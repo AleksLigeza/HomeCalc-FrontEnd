@@ -30,18 +30,18 @@ export class OperationDetailsComponent implements OnInit {
 
     this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd && !this.badRoute) {
-        this.initialiseInvites();
+        this.initialiseDetails();
       }
     });
   }
 
-  initialiseInvites() {
+  initialiseDetails() {
     this.connectedOperations = [];
     this.getDetails();
   }
 
   ngOnInit() {
-    this.initialiseInvites();
+    this.initialiseDetails();
   }
 
   getDetails() {

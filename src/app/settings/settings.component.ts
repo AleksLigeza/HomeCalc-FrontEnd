@@ -11,8 +11,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  passwordOne: string;
-  passwordSecond: string;
+  password: string;
+  passwordRepeat: string;
   email: string;
 
   constructor(
@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit {
   }
 
   changePassword(): void {
-    this.accountService.changePassword(this.passwordOne).subscribe(
+    this.accountService.changePassword(this.password).subscribe(
       res => {
         this.alertService.info('Hasło zmienione');
         this.goBack();

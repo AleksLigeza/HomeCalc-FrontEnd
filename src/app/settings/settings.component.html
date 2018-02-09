@@ -14,44 +14,74 @@
               </div>
             </div>
             <div class="form-bottom">
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Email</span>
+              <form #emailForm="ngForm">
+                <div class="form-group">
+                  <label class="sr-only" for="emailField">E-mail</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="email-addon">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                    <input #emailField="ngModel" required email maxlength="50" class="form-control" name="emailField" placeholder="Email" aria-describedby="emailField-addon"
+                      [(ngModel)]="email" [class.is-invalid]="emailField.invalid && emailField.touched">
+                    <div class="invalid-feedback">
+                      Poprawny email jest wymagany
+                    </div>
+                  </div>
                 </div>
-                <input type="email" class="form-control" [(ngModel)]="email">
-              </div>
 
+                <div class="row justify-content-center">
+                  <div class="col-10 col-sm-7 col-md-5 col-xl-4 mb-3">
+                    <button type="button" class="btn btn-success btn-block" (click)="changeEmail()" [disabled]="!emailForm.form.valid">
+                      <i class="fas fa-save"></i> Zmień email</button>
+                  </div>
+                </div>
+              </form>
+
+              <form #passwordForm="ngForm">
+
+                <div class="form-group">
+                  <label class="sr-only" for="passwordOne">Nowe hasło</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="passwordOne-addon">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                    <input #passwordOne="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="passwordOne"
+                      placeholder="Nowe hasło" aria-describedby="passwordOne-addon" [(ngModel)]="password" [class.is-invalid]="passwordOne.invalid && passwordOne.dirty">
+                    <div class="invalid-feedback">
+                      Hasło musi zawierać conajmniej 5 znaków
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="sr-only" for="passwordSecond">Powtóz hasło</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="passwordSecond-addon">
+                        <i class="fa fa-redo-alt" aria-hidden="true"></i>
+                      </span>
+                    </div>
+                    <input #passwordSecond="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="passwordSecond"
+                      placeholder="Powtóz hasło" aria-describedby="passwordSecond-addon" [(ngModel)]="passwordRepeat" [class.is-invalid]="passwordSecond.dirty && (passwordSecond.invalid || !(password === passwordRepeat))">
+                    <div class="invalid-feedback">
+                      Podane dane nie są zgodne
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row justify-content-center">
+                  <div class="col-10 col-sm-7 col-md-5 col-xl-4 mb-3">
+                    <button type="button" class="btn btn-success btn-block" (click)="changePassword()" [disabled]="!passwordForm.form.valid || !(password === passwordRepeat)">
+                      <i class="fas fa-save"></i> Zmień hasło</button>
+                  </div>
+                </div>
+              </form>
               <div class="row justify-content-center">
-                <div class="col-7 mb-3">
-                  <button type="button" class="btn btn-success btn-block" (click)="changeEmail()">
-                    <i class="fas fa-save"></i> Zmień email</button>
-                </div>
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Nowe hasło</span>
-                </div>
-                <input type="password" class="form-control" [(ngModel)]="passwordOne">
-              </div>
-
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">Powtórz hasło</span>
-                </div>
-                <input type="password" class="form-control" [(ngModel)]="passwordSecond">
-              </div>
-
-              <div class="row justify-content-center">
-                <div class="col-7 mb-3">
-                  <button type="button" class="btn btn-success btn-block" (click)="changePassword()">
-                    <i class="fas fa-save"></i> Zmień hasło</button>
-                </div>
-              </div>
-
-              <div class="row justify-content-center">
-                <div class="col-7">
+                <div class="col-10 col-sm-7 col-md-5 col-xl-4 col-5">
                   <button type="button" class="btn btn-info btn-block" (click)="goBack()">
                     <i class="fas fa-arrow-left"></i> Powrót</button>
                 </div>

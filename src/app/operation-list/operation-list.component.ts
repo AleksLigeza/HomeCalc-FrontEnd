@@ -24,6 +24,7 @@ export class OperationListComponent implements OnInit {
   }
 
   operationDetails(id: number) {
+    window.scrollTo(0, 0);
     this.router.navigate(['/details/' + id.toString()]);
   }
 
