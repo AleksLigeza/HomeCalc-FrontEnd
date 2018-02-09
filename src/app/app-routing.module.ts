@@ -9,15 +9,18 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { SettingsComponent } from './settings/settings.component';
 
 import { AuthGuard } from './auth-guard.service';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: 'welcome', component: WelcomeComponent},
+  { path: 'error', component: ErrorComponent},
   { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthGuard ] },
   { path: 'history', component: HistoryComponent, canActivate: [ AuthGuard ] },
   { path: 'cycles', component: CycleMenuComponent, canActivate: [ AuthGuard ] },
   { path: 'settings', component: SettingsComponent, canActivate: [ AuthGuard ] },
   { path: 'details/:id', component: OperationDetailsComponent, canActivate: [ AuthGuard ], runGuardsAndResolvers: 'always', },
-  { path: '', redirectTo: '/welcome', pathMatch: 'full'}
+  { path: '', redirectTo: '/welcome', pathMatch: 'full'},
+  { path: '**', redirectTo: '/error'}
 ];
 
 @NgModule({

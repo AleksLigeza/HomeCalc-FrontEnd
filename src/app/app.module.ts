@@ -20,6 +20,7 @@ import { AuthInterceptorService } from './authInterceptor.service';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { TruncatePipe } from './trancuatePipe';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TruncatePipe } from './trancuatePipe';
     CycleMenuComponent,
     WelcomeComponent,
     SettingsComponent,
-    TruncatePipe
+    TruncatePipe,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

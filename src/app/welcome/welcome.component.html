@@ -21,7 +21,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #loginEmail="ngModel" required email class="form-control" name="loginEmail" placeholder="Email" aria-describedby="loginEmail-addon"
+                            <input #loginEmail="ngModel" required email maxlength="50" class="form-control" name="loginEmail" placeholder="Email" aria-describedby="loginEmail-addon"
                                 [(ngModel)]="loginData.email" [class.is-invalid]="loginEmail.invalid && loginEmail.touched">
                             <div class="invalid-feedback">
                                 Poprawny email jest wymagany
@@ -37,7 +37,7 @@
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #loginPassword="ngModel" required minlength="5" type="password" class="form-control" name="loginPassword" placeholder="Hasło"
+                            <input #loginPassword="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="loginPassword" placeholder="Hasło"
                                 aria-describedby="loginPassword-addon" [(ngModel)]="loginData.password" [class.is-invalid]="loginPassword.invalid && loginPassword.dirty">
                             <div class="invalid-feedback">
                                 Hasło musi zawierać conajmniej 5 znaków
@@ -72,7 +72,7 @@
                                     <i class="fa fa-envelope" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #registerEmail="ngModel" required email class="form-control" name="registerEmail" placeholder="Email" aria-describedby="registerEmail-addon"
+                            <input #registerEmail="ngModel" required email maxlength="50" class="form-control" name="registerEmail" placeholder="Email" aria-describedby="registerEmail-addon"
                                 [(ngModel)]="registerData.email" [class.is-invalid]="registerEmail.invalid && registerEmail.touched">
                             <div class="invalid-feedback">
                                 Poprawny email jest wymagany
@@ -88,7 +88,7 @@
                                     <i class="fa fa-redo-alt" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #registerEmailRepeat="ngModel" required email class="form-control" name="registerEmailRepeat" placeholder="Powtórz email"
+                            <input #registerEmailRepeat="ngModel" required maxlength="50" email class="form-control" name="registerEmailRepeat" placeholder="Powtórz email"
                                 aria-describedby="registerEmailRepeat-addon" [(ngModel)]="registerData.emailRepeat" 
                                 [class.is-invalid]="registerEmailRepeat.dirty && (registerEmailRepeat.invalid || !(registerData.email === registerData.emailRepeat))">
                             <div class="invalid-feedback">
@@ -105,7 +105,7 @@
                                     <i class="fa fa-lock" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #registerPassword="ngModel" required minlength="5" type="password" class="form-control" name="registerPassword" placeholder="Hasło"
+                            <input #registerPassword="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="registerPassword" placeholder="Hasło"
                                 aria-describedby="registerPassword-addon" [(ngModel)]="registerData.password" [class.is-invalid]="registerPassword.invalid && registerPassword.dirty">
                             <div class="invalid-feedback">
                                 Hasło musi zawierać conajmniej 5 znaków
@@ -121,7 +121,7 @@
                                     <i class="fa fa-redo-alt" aria-hidden="true"></i>
                                 </span>
                             </div>
-                            <input #registerPasswordRepeat="ngModel" required minlength="5" type="password" class="form-control" name="registerPasswordRepeat"
+                            <input #registerPasswordRepeat="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="registerPasswordRepeat"
                                 placeholder="Powtóz hasło" aria-describedby="registerPasswordRepeat-addon" [(ngModel)]="registerData.passwordRepeat"
                                 [class.is-invalid]="registerPasswordRepeat.dirty && (registerPasswordRepeat.invalid || !(registerData.password === registerData.passwordRepeat))">
                             <div class="invalid-feedback">

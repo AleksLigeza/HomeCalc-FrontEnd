@@ -19,7 +19,7 @@ export class AuthInterceptorService implements HttpInterceptor {
                     auth.logOut();
                 }
             } else if (err instanceof HttpErrorResponse && err.status === 404) {
-                auth.router.navigate(['/']);
+                auth.router.navigate(['/error']);
             }
         });
     }

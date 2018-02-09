@@ -7,9 +7,9 @@
       <div class="col-6 main-box">
         <div class="small-box">
           <h4 class="mb-4">Obecny miesiąc
-            <div class="amount-big" [ngClass]="{'profit': (summary.income >= summary.bills),
-            'loss': (summary.income < summary.bills)}">
-              {{summary.income - summary.bills | currency:'PLN':'1.2-2' }}
+            <div class="amount-big" [ngClass]="{'profit': (diffrence.overall >= 0),
+            'loss': (diffrence.overall < 0)}">
+              {{diffrence.overall | currency:'PLN':'1.2-2' }}
             </div>
           </h4>
           <div class="row justify-content-center">
@@ -21,11 +21,11 @@
                 <div>
                   {{ summary.income | currency:'PLN':'1.2-2' }} |
 
-                  <div class="amount" [ngClass]="{'profit': (summary.income >= summary.lastMonthIncome),
-            'loss': (summary.income < summary.lastMonthIncome)}">
-                    <i class="fas fa-caret-up" *ngIf="(summary.income >= summary.lastMonthIncome)"></i>
-                    <i class="fas fa-caret-down" *ngIf="(summary.income < summary.lastMonthIncome)"></i>
-                    {{(summary.income - summary.lastMonthIncome) / summary.lastMonthIncome * 100 | number:'1.2-2' }}%
+                  <div class="amount" [ngClass]="{'profit': (diffrence.incomePercent >= 0),
+            'loss': (diffrence.incomePercent < 0)}">
+                    <i class="fas fa-caret-up" *ngIf="(diffrence.incomePercent >= 0)"></i>
+                    <i class="fas fa-caret-down" *ngIf="(diffrence.incomePercent < 0)"></i>
+                    {{diffrence.incomePercent | number:'1.2-2' }}%
                   </div>
                 </div>
               </h6>
@@ -38,11 +38,11 @@
                 <div>
                   {{ summary.bills | currency:'PLN':'1.2-2' }} |
 
-                  <div class="amount" [ngClass]="{'profit': (summary.bills <= summary.lastMonthBills),
-          'loss': (summary.bills > summary.lastMonthBills)}">
-                    <i class="fas fa-caret-up" *ngIf="(summary.bills <= summary.lastMonthBills)"></i>
-                    <i class="fas fa-caret-down" *ngIf="(summary.bills > summary.lastMonthBills)"></i>
-                    {{(summary.bills - summary.lastMonthBills) / summary.lastMonthBills * 100 | number:'1.2-2' }}%
+                  <div class="amount" [ngClass]="{'profit': (diffrence.billsPercent <= 0),
+          'loss': (diffrence.billsPercent > 0)}">
+                    <i class="fas fa-caret-up" *ngIf="(diffrence.billsPercent <= 0)"></i>
+                    <i class="fas fa-caret-down" *ngIf="(diffrence.billsPercent > 0)"></i>
+                    {{diffrence.billsPercent | number:'1.2-2' }}%
                   </div>
                 </div>
               </h6>
@@ -55,9 +55,9 @@
         <div class="small-box">
           <h4 class="mb-4">
             Poprzedni miesiąc
-            <div class="amount-big" [ngClass]="{'profit': (summary.lastMonthIncome >= summary.lastMonthBills),
-                'loss': (summary.lastMonthIncome < summary.lastMonthBills)}">
-              {{summary.lastMonthIncome - summary.lastMonthBills | currency:'PLN':'1.2-2' }}
+            <div class="amount-big" [ngClass]="{'profit': (diffrence.overallLast >= 0),
+                'loss': (diffrence.overallLast < 0)}">
+              {{diffrence.overallLast | currency:'PLN':'1.2-2' }}
             </div>
           </h4>
           <div class="row justify-content-center">

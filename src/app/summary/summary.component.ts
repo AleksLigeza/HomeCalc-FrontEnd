@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
-import { AccountSummary } from '../models/accountSummary';
+import { AccountSummary, AccountSummaryDiffrence } from '../models/accountSummary';
 import { AlertService } from '../alert.service';
+import { isNgContainer } from '@angular/compiler';
 
 @Component({
   selector: 'app-summary',
@@ -10,6 +11,7 @@ import { AlertService } from '../alert.service';
 })
 export class SummaryComponent implements OnInit {
   summary: AccountSummary;
+  diffrence: AccountSummaryDiffrence;
 
   constructor(
     private accountService: AccountService,
@@ -18,6 +20,7 @@ export class SummaryComponent implements OnInit {
 
   ngOnInit() {
     this.summary = new AccountSummary();
+    this.diffrence = new AccountSummaryDiffrence(this.summary);
     this.getSummary();
   }
 
@@ -25,6 +28,7 @@ export class SummaryComponent implements OnInit {
     this.accountService.getSummary().subscribe(
       res => {
         this.summary = res;
+        this.diffrence = new AccountSummaryDiffrence(res);
       },
       err => {
         if (err.status === 500) {

@@ -18,6 +18,8 @@ export class OperationDetailsComponent implements OnInit {
   selectedType: boolean;
   connectedOperations: Operation[];
 
+  badRoute: boolean;
+
   constructor(
     private accountService: AccountService,
     private route: ActivatedRoute,
@@ -27,7 +29,7 @@ export class OperationDetailsComponent implements OnInit {
   ) {
 
     this.router.events.subscribe((e: any) => {
-      if (e instanceof NavigationEnd) {
+      if (e instanceof NavigationEnd && !this.badRoute) {
         this.initialiseInvites();
       }
     });
@@ -55,13 +57,17 @@ export class OperationDetailsComponent implements OnInit {
         this.operation._id = '-1';
       }
     } else { // load existing operation from database
-      this.accountService.getDetails(id).subscribe(res => {
-        this.operation = res;
-        if (res['cycleId'] === '0') {
-          this.operation.cyclic = true;
-          this.getCycleOperations(this.operation._id);
-        }
-      });
+      this.accountService.getDetails(id).subscribe(
+        res => {
+          this.operation = res;
+          if (res['cycleId'] === '0') {
+            this.operation.cyclic = true;
+            this.getCycleOperations(this.operation._id);
+          }
+        },
+        err => {
+          this.badRoute = true;
+        });
     }
   }
 
@@ -70,6 +76,11 @@ export class OperationDetailsComponent implements OnInit {
   }
 
   save(): void {
+    if (this.operation.amount <= 0) {
+      this.alertService.error('Kwota musi być większa od 0');
+      return;
+    }
+
     this.accountService.createUpdateOperation(this.operation)
       .subscribe(res => {
         this.goBack();
