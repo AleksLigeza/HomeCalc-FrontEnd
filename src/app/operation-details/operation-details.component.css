@@ -13,3 +13,8 @@
 .col-xs-12 > .btn {
     margin: 5px 0px;
 }
+
+.input-group-prepend span.input-group-text {
+    width: 70px;
+    color: #545b61;
+}

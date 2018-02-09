@@ -82,3 +82,8 @@ h2 {
 .form-bottom form button.btn {
     width: 100%;
 }
+
+.form-bottom form .input-group input {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}

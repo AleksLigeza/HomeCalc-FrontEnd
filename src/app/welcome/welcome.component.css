@@ -1,0 +1,15 @@
+.invalid-feedback {
+    margin-top: 0.4rem;
+    line-height: normal;
+    padding: 0px 12px;
+}
+
+span.input-group-text {
+    width: 45px;
+}
+
+span.input-group-text svg {
+    color: #545b61;
+    font-size: 17px;
+    margin: 0px auto;
+}

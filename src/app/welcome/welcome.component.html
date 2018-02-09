@@ -7,23 +7,45 @@
                     <h2>Logowanie</h2>
                 </div>
                 <div class="form-top-right">
-                    <i class="fa fa-lock"></i>
+                    <i class="fa fa-user"></i>
                 </div>
             </div>
             <div class="form-bottom">
-                <form class="login-form">
-                    <div class="form-group" [class.has-error]="loginEmail.invalid && loginEmail.touched">
-                        <label class="sr-only control-label" for="loginEmail">E-mail</label>
-                        <input #loginEmail="ngModel" required email class="form-control" name="loginEmail" placeholder="Email" [(ngModel)]="loginData.email">
-                        <div *ngIf="loginEmail.invalid && loginEmail.touched" class="alert alert-danger">
-                            Email is required, and must be at least 3 characters.
+                <form class="login-form" #loginForm="ngForm">
+
+                    <div class="form-group">
+                        <label class="sr-only" for="loginEmail">E-mail</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="loginEmail-addon">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #loginEmail="ngModel" required email class="form-control" name="loginEmail" placeholder="Email" aria-describedby="loginEmail-addon"
+                                [(ngModel)]="loginData.email" [class.is-invalid]="loginEmail.invalid && loginEmail.touched">
+                            <div class="invalid-feedback">
+                                Poprawny email jest wymagany
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group" [class.has-error]="loginPassword.invalid && loginPassword.touched">
-                        <label class="sr-only control-label" for="loginPassword">Hasło</label>
-                        <input #loginPassword="ngModel" required type="password" class="form-control" name="loginPassword" placeholder="Hasło"  [(ngModel)]="loginData.password">
+
+                    <div class="form-group">
+                        <label class="sr-only" for="loginPassword">Hasło</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="loginPassword-addon">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #loginPassword="ngModel" required minlength="5" type="password" class="form-control" name="loginPassword" placeholder="Hasło"
+                                aria-describedby="loginPassword-addon" [(ngModel)]="loginData.password" [class.is-invalid]="loginPassword.invalid && loginPassword.dirty">
+                            <div class="invalid-feedback">
+                                Hasło musi zawierać conajmniej 5 znaków
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" (click)="logIn()" class="btn btn-info">Zaloguj się!</button>
+
+                    <button type="submit" (click)="logIn()" class="btn btn-info" [disabled]="!loginForm.form.valid">Zaloguj się!</button>
                 </form>
             </div>
         </div>
@@ -40,25 +62,75 @@
                 </div>
             </div>
             <div class="form-bottom">
-                <form class="registration-form">
+                <form class="registration-form" #registerForm="ngForm">
+
                     <div class="form-group">
-                        <label class="sr-only" for="email">Email</label>
-                        <input email [(ngModel)]="registerData.email" name="email" placeholder="Email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="email-second">Powtórz email</label>
-                        <input email [(ngModel)]="registerData.emailRepeat" name="email-second" placeholder="Powtórz email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password">Hasło</label>
-                        <input type="password" [(ngModel)]="registerData.password" name="password" placeholder="Hasło" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password-second">Powtórz hasło</label>
-                        <input type="password" [(ngModel)]="registerData.passwordRepeat" name="password-second" placeholder="Powtórz hasło" class="form-control">
+                        <label class="sr-only" for="registerEmail">E-mail</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="registerEmail-addon">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #registerEmail="ngModel" required email class="form-control" name="registerEmail" placeholder="Email" aria-describedby="registerEmail-addon"
+                                [(ngModel)]="registerData.email" [class.is-invalid]="registerEmail.invalid && registerEmail.touched">
+                            <div class="invalid-feedback">
+                                Poprawny email jest wymagany
+                            </div>
+                        </div>
                     </div>
 
-                    <button type="submit" (click)="register()" class="btn btn-info">Zarejestruj się!</button>
+                    <div class="form-group">
+                        <label class="sr-only" for="registerEmailRepeat">Powtórz email</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="registerEmailRepeat-addon">
+                                    <i class="fa fa-redo-alt" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #registerEmailRepeat="ngModel" required email class="form-control" name="registerEmailRepeat" placeholder="Powtórz email"
+                                aria-describedby="registerEmailRepeat-addon" [(ngModel)]="registerData.emailRepeat" 
+                                [class.is-invalid]="registerEmailRepeat.dirty && (registerEmailRepeat.invalid || !(registerData.email === registerData.emailRepeat))">
+                            <div class="invalid-feedback">
+                                Podane dane nie są zgodne
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="registerPassword">Hasło</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="registerPassword-addon">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #registerPassword="ngModel" required minlength="5" type="password" class="form-control" name="registerPassword" placeholder="Hasło"
+                                aria-describedby="registerPassword-addon" [(ngModel)]="registerData.password" [class.is-invalid]="registerPassword.invalid && registerPassword.dirty">
+                            <div class="invalid-feedback">
+                                Hasło musi zawierać conajmniej 5 znaków
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="sr-only" for="registerPasswordRepeat">Powtóz hasło</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="registerPasswordRepeat-addon">
+                                    <i class="fa fa-redo-alt" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                            <input #registerPasswordRepeat="ngModel" required minlength="5" type="password" class="form-control" name="registerPasswordRepeat"
+                                placeholder="Powtóz hasło" aria-describedby="registerPasswordRepeat-addon" [(ngModel)]="registerData.passwordRepeat"
+                                [class.is-invalid]="registerPasswordRepeat.dirty && (registerPasswordRepeat.invalid || !(registerData.password === registerData.passwordRepeat))">
+                            <div class="invalid-feedback">
+                                Podane dane nie są zgodne
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" (click)="register()" class="btn btn-info" [disabled]="!registerForm.form.valid">Zarejestruj się!</button>
                 </form>
             </div>
         </div>

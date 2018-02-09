@@ -38,21 +38,24 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Kwota</span>
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="operation.amount">
+                    <input type="number" class="form-control" [(ngModel)]="operation.amount">
+                    <div class="input-group-append">
+                            <span class="input-group-text">zł</span>
+                    </div>
                 </div>
 
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Opis</span>
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="operation.description">
+                    <input type="text" maxlength="50" class="form-control" [(ngModel)]="operation.description">
                 </div>
 
                 <div class="input-group mb-2" *ngIf="!operation.cyclic">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Data</span>
                     </div>
-                    <input type="text" class="form-control" [ngModel]="operation.date | date:'yyyy/MM/dd'" (ngModelChange)="operation.date=$event" placeholder="YYYY/MM/DD">
+                    <input type="date" class="form-control" [value]="operation.date | date:'yyyy-MM-dd'" (input)="operation.date = $event.target.valueAsDate" />
                 </div>
 
                 <div class="row justify-content-center">
