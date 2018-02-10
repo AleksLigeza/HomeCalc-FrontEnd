@@ -4,6 +4,8 @@ import { Operation } from './models/operation';
 import { LoginData, RegisterData } from './models/login';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from './alert.service';
+import { HistoryFilters } from './models/historyFilters';
+import { filter } from 'Rxjs/operators/filter';
 
 @Injectable()
 export class AccountService {
@@ -20,6 +22,29 @@ export class AccountService {
 
   getHistory(records: Number) {
       return this.http.get<any>(this.path + 'operations/history/' + records);
+  }
+
+  getHistoryWithFilters(records: Number, filters: HistoryFilters) {
+    let tempDesc = filters.description;
+    if (tempDesc === '') {
+      tempDesc = '0null';
+    }
+
+    const dateSince = new Date(filters.dateSince);
+    const dateTo = new Date(filters.dateTo);
+
+    dateSince.setUTCHours(0, 0, 0, 0);
+    dateTo.setUTCHours(24, 0, 0, 0);
+
+    const filtersPath = records + '/' +
+        filters.amountFrom + '/' +
+        filters.amountTo + '/' +
+        tempDesc + '/' +
+        dateSince.toISOString() + '/' +
+        dateTo.toISOString() + '/' +
+        filters.type + '/';
+
+    return this.http.get<any>(this.path + 'operations/historyWithFilters/' + filtersPath);
   }
 
   getDetails(id: string) {

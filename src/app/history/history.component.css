@@ -1,0 +1,43 @@
+.form-top-simple h4 {
+    margin: 0px;
+    padding-left: 43px;
+}
+h5 {
+    margin: 6px 0px;
+}
+
+.buttons {
+    margin-left:0px;
+    margin-right:0px;
+}
+
+label.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.chevron-right {
+    float: right;
+    font-size: 1.2rem;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.btn-link {
+    color: rgba(255,255,255,.5);
+}
+
+.btn-link:hover {
+    color: rgba(255,255,255,.75);
+}
+
+.btn-bold {
+    margin: 0px 5px;
+    height: 40px;
+}
+
+.typeOption {
+    height: 40px;
+}

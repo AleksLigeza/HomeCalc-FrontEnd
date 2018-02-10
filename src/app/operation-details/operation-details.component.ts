@@ -76,8 +76,8 @@ export class OperationDetailsComponent implements OnInit {
   }
 
   save(): void {
-    if (this.operation.amount <= 0) {
-      this.alertService.error('Kwota musi być większa od 0');
+    if (this.operation.amount <= 0 || this.operation.amount >= 999999) {
+      this.alertService.error('Błędna kwota');
       return;
     }
 

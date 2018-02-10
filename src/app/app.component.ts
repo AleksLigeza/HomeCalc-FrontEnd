@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -8,8 +8,9 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'Home Calc';
+  @ViewChild('navbarToggler') navbarToggler: ElementRef;
 
-  constructor(private authService: AuthService) {  }
+  constructor(private authService: AuthService) { }
 
   logOut() {
     this.authService.logOut();
@@ -17,5 +18,15 @@ export class AppComponent {
 
   get isAuthenticated(): boolean {
     return this.authService.isAuthenticated;
+  }
+
+  navBarTogglerIsVisible() {
+    return this.navbarToggler.nativeElement.offsetParent !== null;
+  }
+
+  collapseNav() {
+    if (this.navBarTogglerIsVisible()) {
+      this.navbarToggler.nativeElement.click();
+    }
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../account.service';
 import { Operation } from '../models/operation';
 import { AlertService } from '../alert.service';
+import { HistoryFilters } from '../models/historyFilters';
+import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 @Component({
   selector: 'app-history',
@@ -9,8 +11,12 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
+  filtersVisible: boolean;
+  filtersApplied: boolean;
   history: Operation[];
   count: number;
+
+  filters: HistoryFilters;
 
   get records() {
     return this.history.length;
@@ -22,23 +28,15 @@ export class HistoryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.history = [];
-    this.count = -1;
+    this.resetHistory();
+    this.clearFilters();
     this.getHistory();
   }
 
   getHistory() {
     this.accountService.getHistory(this.records).subscribe(
       res => {
-        this.history = this.history.concat(res);
-
-        if (this.count !== -1) {
-          if (this.records !== this.count) {
-            this.alert.info('Nowe operacje załadowane!');
-          } else {
-            this.alert.warn('Brak kolejnych operacji!');
-          }
-        }
+        this.addHistoryElements(res);
       },
       err => {
         this.alert.error('Błąd ładowania operacji');
@@ -46,8 +44,55 @@ export class HistoryComponent implements OnInit {
     );
   }
 
+  getHistoryWithFilters() {
+    this.filtersApplied = true;
+
+    this.accountService.getHistoryWithFilters(this.records, this.filters).subscribe(
+      res => {
+        this.addHistoryElements(res);
+      },
+      err => {
+        this.alert.error('Błąd ładowania operacji');
+      }
+    );
+  }
+
+  addHistoryElements(res: Operation[]) {
+    this.history = this.history.concat(res);
+
+    if (this.count !== -1) {
+      if (this.records !== this.count) {
+        this.alert.info('Nowe operacje załadowane!');
+      } else {
+        this.alert.warn('Brak kolejnych operacji!');
+      }
+    }
+  }
+
   loadMore() {
     this.count = this.records;
-    this.getHistory();
+    if (!this.filtersApplied) {
+      this.getHistory();
+    } else {
+      this.getHistoryWithFilters();
+    }
+  }
+
+  showHideFilters() {
+    this.filtersVisible = !this.filtersVisible;
+  }
+
+  clearFilters() {
+    this.filters = new HistoryFilters();
+    this.filtersApplied = false;
+  }
+
+  resetHistory() {
+    this.history = [];
+    this.count = -1;
+  }
+
+  changeType(type: number) {
+    this.filters.type = type;
   }
 }

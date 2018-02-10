@@ -1,26 +1,26 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" routerLink="/">HomeCalc</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+    <button #navbarToggler class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" *ngIf="isAuthenticated">
-                <a class="nav-link" routerLink="/dashboard">Panel</a>
+                <a class="nav-link" routerLink="/dashboard" (click)="collapseNav()">Panel</a>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated">
-                <a class="nav-link" routerLink="/history">Historia</a>
+                <a class="nav-link" routerLink="/history" (click)="collapseNav()">Historia</a>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated">
-                <a class="nav-link" routerLink="/cycles">Operacje zdefiniowane</a>
+                <a class="nav-link" routerLink="/cycles" (click)="collapseNav()">Operacje zdefiniowane</a>
             </li>
             <li class="nav-item" *ngIf="isAuthenticated">
-                <a class="nav-link" routerLink="/settings">Konto</a>
+                <a class="nav-link" routerLink="/settings" (click)="collapseNav()">Konto</a>
             </li>
         </ul>
         <span class="navbar-text" *ngIf="isAuthenticated">
-            <a class="nav-link" routerLink="" (click)="logOut()">Wyloguj</a>
+            <a class="nav-link" routerLink="" (click)="logOut()" (click)="collapseNav()">Wyloguj</a>
         </span>
     </div>
 </nav>

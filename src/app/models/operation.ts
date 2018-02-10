@@ -9,8 +9,9 @@ export class Operation {
     constructor(id: string) {
         this._id = id;
         this.date = new Date();
+        this.date.setUTCHours(12);
         this.income = true;
-        this.amount = 0;
+        this.amount = 1;
         this.description = '';
         this.cyclic = false;
     }
