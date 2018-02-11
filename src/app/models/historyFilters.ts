@@ -22,4 +22,29 @@ export class HistoryFilters {
 
         this.type = 0;
     }
+
+    nullAllParameters() {
+        this.amountFrom = null;
+        this.amountTo = null;
+        this.description = '';
+        this.dateSince = null;
+        this.dateTo = null;
+        this.type = 0;
+    }
+
+    removeNulls() {
+        const cleanTemplate = new HistoryFilters();
+        if (this.amountFrom === null) {
+            this.amountFrom = cleanTemplate.amountFrom;
+        }
+        if (this.amountTo === null) {
+            this.amountTo = cleanTemplate.amountTo;
+        }
+        if (this.dateTo === null) {
+            this.dateTo = cleanTemplate.dateTo;
+        }
+        if (this.dateSince === null) {
+            this.dateSince = cleanTemplate.dateSince;
+        }
+    }
 }

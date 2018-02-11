@@ -4,6 +4,7 @@ import { Operation } from '../models/operation';
 import { AlertService } from '../alert.service';
 import { HistoryFilters } from '../models/historyFilters';
 import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
+import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 @Component({
   selector: 'app-history',
@@ -46,8 +47,12 @@ export class HistoryComponent implements OnInit {
 
   getHistoryWithFilters() {
     this.filtersApplied = true;
+    let tempFilters: HistoryFilters;
+    tempFilters = Object.create(this.filters);
 
-    this.accountService.getHistoryWithFilters(this.records, this.filters).subscribe(
+    tempFilters.removeNulls();
+
+    this.accountService.getHistoryWithFilters(this.records, tempFilters).subscribe(
       res => {
         this.addHistoryElements(res);
       },
@@ -84,6 +89,7 @@ export class HistoryComponent implements OnInit {
 
   clearFilters() {
     this.filters = new HistoryFilters();
+    this.filters.nullAllParameters();
     this.filtersApplied = false;
   }
 
