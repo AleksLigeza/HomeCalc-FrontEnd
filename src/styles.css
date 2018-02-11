@@ -1,12 +1,22 @@
 body {
     margin: 10px;
-    background-color: #2b3e50;
+    background-color: #3b4958;
+    /* background-color: #202b36; */
+    /* background-color: #2b3e50; */
+    /* background-image: url("C:/Users/aleks/Desktop/Background-75.png"); */
+    /* background-image: url("C:/Users/aleks/Desktop/Grey-website-background1.jpg"); */
+    /* background-image: url("http://playfusionlax.com/wp-content/uploads/2013/06/Grey-website-background.jpg"); */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
     line-height: 30px;
     text-align: center;
-    color: rgb(200, 200, 200);
+    /* color: rgb(200, 200, 200); */
+    color: aliceblue;
     padding-top: 4.5rem;
   }
 
@@ -26,6 +36,7 @@ h2 {
     font-size: 30px;
     font-weight: 700;
     line-height: 30px;
+    color: aliceblue !important;
 }
 
 .form-box {
@@ -35,9 +46,10 @@ h2 {
 
 .form-top {
     overflow: hidden;
-    padding: 0 25px 15px 25px;
-    background: rgba(0, 0, 0, 0.35);
-    color: #888;
+    padding: 0 25px 15px 25px;    
+    background-color: hsl(211, 26%, 23%);
+    /* background: rgba(0, 0, 0, 0.35); */
+    /* color: #888; */
     border-radius: 20px 20px 0px 0px;
     text-align: left;
 }
@@ -45,8 +57,10 @@ h2 {
 .form-top-simple {
     overflow: hidden;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.35);
-    color: #888;
+    /* background-color: #233350 !important; */
+    background-color: hsl(211, 26%, 23%);
+    /* background: rgba(0, 0, 0, 0.35); */
+    /* color: #888; */
     border-radius: 20px 20px 0px 0px;
     text-align: center;
     vertical-align: middle;
@@ -62,16 +76,18 @@ h2 {
     float: left;
     width: 25%;
     padding-top: 20px;
-    font-size: 45px;
-    color: #fff;
+    font-size: 2.2rem;
+    /* color: #fff; */
     line-height: 50px;
     text-align: right;
-    opacity: 0.3;
+    /* opacity: 0.3; */
 }
 
 .form-bottom {
     padding: 20px 25px;
-    background: rgba(0, 0, 0, 0.3);
+    /* background: rgba(0, 0, 0, 0.3); */
+    /* background-color: hsl(219, 38%, 28%); */
+    background-color: #304152;
     border-radius: 0 0 20px 20px;
     text-align: left;
 }
@@ -87,4 +103,17 @@ h2 {
 .form-bottom form .input-group input {
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
+}
+
+h3 b {
+    font-size: 1.5rem !important;
+    color: aliceblue;
+}
+h4 b {
+    font-size: 1.4rem !important;
+}
+
+.bg-dark {
+    /* background-color: #233350 !important; */
+    background-color: hsl(209, 26%, 17%) !important;
 }

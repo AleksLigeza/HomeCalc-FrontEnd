@@ -5,15 +5,21 @@
             <div class="form-top">
                 <div class="form-top-left">
                     <div *ngIf="operation._id != '0' && operation._id != '-1'">
-                        <h3>Szczegóły operacji</h3>
+                        <h3>
+                            <b>Szczegóły operacji</b>
+                        </h3>
                     </div>
 
                     <div *ngIf="operation._id === '-1'">
-                        <h3>Nowa operacja</h3>
+                        <h3>
+                            <b>Nowa operacja</b>
+                        </h3>
                     </div>
 
                     <div *ngIf="operation._id === '0'">
-                        <h3>Nowa operacja zdefiniowana</h3>
+                        <h3>
+                            <b>Nowa operacja zdefiniowana</b>
+                        </h3>
                     </div>
                 </div>
                 <div class="form-top-right">
@@ -21,13 +27,15 @@
                 </div>
             </div>
             <div class="form-bottom">
-                <div class="row">
-                    <div class="col-6">
+                <div class="row justify-content-center">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <button type="button" class="btn btn-success btn-block btn-bold" [class.btn-selected]="operation.income === true" (click)="onSelectType(true)">
                             <i class="fas fa-plus"></i>
                         </button>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-1 d-none d-md-block">
+                    </div>
+                    <div class="col-6 col-md-4 col-lg-3">
                         <button type="button" class="btn btn-danger btn-block btn-bold" [class.btn-selected]="operation.income === false" (click)="onSelectType(false)">
                             <i class="fas fa-minus"></i>
                         </button>
@@ -40,7 +48,7 @@
                     </div>
                     <input type="number" max="999999" min="0" class="form-control" [(ngModel)]="operation.amount">
                     <div class="input-group-append">
-                            <span class="input-group-text">zł</span>
+                        <span class="input-group-text">zł</span>
                     </div>
                 </div>
 
@@ -55,7 +63,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Data</span>
                     </div>
-                    <input type="date" class="form-control" [value]="operation.date | date:'yyyy-MM-dd'" (input)="operation.date = $event.target.valueAsDate" />
+                    <input type="date" class="form-control" [value]="operation.date | date:'yyyy-MM-dd'" (input)="operation.date = $event.target.valueAsDate"
+                    />
                 </div>
 
                 <div class="row justify-content-center">
