@@ -31,6 +31,10 @@
     color: gray;
 }
 
+.descPlaceholder{
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
 .form-bottom {
     padding: 15px;
 }

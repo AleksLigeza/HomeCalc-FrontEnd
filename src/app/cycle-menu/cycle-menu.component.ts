@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account.service';
+import { OperationsService } from '../services/operations.service';
 import { Operation } from '../models/operation';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-cycle-menu',
@@ -18,7 +18,7 @@ export class CycleMenuComponent implements OnInit {
   }
 
   constructor(
-    private accountService: AccountService,
+    private operationsService: OperationsService,
     private alert: AlertService
   ) { }
 
@@ -29,7 +29,7 @@ export class CycleMenuComponent implements OnInit {
   }
 
   getCycles() {
-    this.accountService.getCycles(this.records).subscribe(
+    this.operationsService.getCycles(this.records).subscribe(
       res => {
         this.cycles = this.cycles.concat(res);
         this.enableCycleProperty();

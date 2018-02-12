@@ -11,7 +11,12 @@
                     {{operation.date | date:'yyyy/MM/dd'}}
                 </div>
             </div>
-            <div class="desc col-8 col-sm-4">{{operation.description | truncate:[18, '...'] }}</div>
+            <div class="desc col-8 col-sm-4">
+                {{operation.description | truncate:[18, '...'] }}
+                <b class="descPlaceholder" *ngIf="operation.description === ''">
+                    (brak opisu)
+                </b>
+            </div>
             <div class="amount col-5 col-sm-2">{{operation.amount | currency:'PLN':'1.2-2' }}</div>
             <div class="management col-7 col-sm-4">
                 <button type="button" class="btn btn-info" (click)="$event.stopPropagation();operationDetails(operation._id)">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 import { Alert, AlertType } from '../models/alert';
 
 @Component({
@@ -16,8 +16,12 @@ export class AlertComponent implements OnInit {
   ngOnInit() {
     this.alertService.getAlert().subscribe((alert: Alert) => {
       if (!alert) {
+          this.alerts = [];
+          return;
+      }
+      console.log(alert);
+      if (alert.keep) {
         this.alerts = [];
-        return;
       }
 
       this.alerts.push(alert);
@@ -43,22 +47,6 @@ export class AlertComponent implements OnInit {
       case AlertType.Warning:
         return 'alert alert-warning';
     }
-  }
-
-  success(message: string) {
-    this.alertService.success(message);
-  }
-
-  error(message: string) {
-    this.alertService.error(message);
-  }
-
-  info(message: string) {
-    this.alertService.info(message);
-  }
-
-  warn(message: string) {
-    this.alertService.warn(message);
   }
 
   clear() {

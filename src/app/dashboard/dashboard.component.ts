@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account.service';
+import { OperationsService } from '../services/operations.service';
 import { Operation } from '../models/operation';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +9,7 @@ import { AlertService } from '../alert.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private accountService: AccountService,
+  constructor(private operationsService: OperationsService,
   private alert: AlertService) { }
 
   historyShortcut: Operation[];
@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   }
 
   loadHistoryShortcut() {
-  this.accountService.getHistory(0).subscribe(
+  this.operationsService.getHistory(0).subscribe(
       res => {
         this.historyShortcut = res;
       },

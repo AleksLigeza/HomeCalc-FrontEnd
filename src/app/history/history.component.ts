@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../account.service';
+import { OperationsService } from '../services/operations.service';
 import { Operation } from '../models/operation';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 import { HistoryFilters } from '../models/historyFilters';
 import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
@@ -24,7 +24,7 @@ export class HistoryComponent implements OnInit {
   }
 
   constructor(
-    private accountService: AccountService,
+    private operationsService: OperationsService,
     private alert: AlertService
   ) { }
 
@@ -35,7 +35,7 @@ export class HistoryComponent implements OnInit {
   }
 
   getHistory() {
-    this.accountService.getHistory(this.records).subscribe(
+    this.operationsService.getHistory(this.records).subscribe(
       res => {
         this.addHistoryElements(res);
       },
@@ -52,7 +52,7 @@ export class HistoryComponent implements OnInit {
 
     tempFilters.removeNulls();
 
-    this.accountService.getHistoryWithFilters(this.records, tempFilters).subscribe(
+    this.operationsService.getHistoryWithFilters(this.records, tempFilters).subscribe(
       res => {
         this.addHistoryElements(res);
       },

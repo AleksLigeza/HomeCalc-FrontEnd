@@ -8,7 +8,7 @@ import { CycleMenuComponent } from './cycle-menu/cycle-menu.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SettingsComponent } from './settings/settings.component';
 
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from './services/auth-guard.service';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [

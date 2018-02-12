@@ -1,27 +1,23 @@
 import { Injectable } from '@angular/core';
-import { AccountSummary } from './models/accountSummary';
-import { Operation } from './models/operation';
-import { LoginData, RegisterData } from './models/login';
+import { Operation } from '../models/operation';
+import { HistoryFilters } from '../models/historyFilters';
 import { HttpClient } from '@angular/common/http';
 import { AlertService } from './alert.service';
-import { HistoryFilters } from './models/historyFilters';
-import { filter } from 'Rxjs/operators/filter';
 
 @Injectable()
-export class AccountService {
+export class OperationsService {
 
   constructor( private http: HttpClient,
-    private alertService: AlertService
-  ) { }
+    private alertService: AlertService) { }
 
-  path = 'http://localhost:3000/';
+  path = 'http://localhost:3000/operations/';
 
   getSummary() {
-    return this.http.get<any>(this.path + 'operations/summary');
+    return this.http.get<any>(this.path + 'summary');
   }
 
   getHistory(records: Number) {
-      return this.http.get<any>(this.path + 'operations/history/' + records);
+      return this.http.get<any>(this.path + 'history/' + records);
   }
 
   getHistoryWithFilters(records: Number, filters: HistoryFilters) {
@@ -44,19 +40,19 @@ export class AccountService {
         dateTo.toISOString() + '/' +
         filters.type + '/';
 
-    return this.http.get<any>(this.path + 'operations/historyWithFilters/' + filtersPath);
+    return this.http.get<any>(this.path + 'historyWithFilters/' + filtersPath);
   }
 
   getDetails(id: string) {
-    return this.http.get<any>(this.path + 'operations/details/' + id);
+    return this.http.get<any>(this.path + 'details/' + id);
   }
 
   getCycleOperations(id: string) {
-    return this.http.get<any>(this.path + 'operations/cycle/' + id);
+    return this.http.get<any>(this.path + 'cycle/' + id);
   }
 
   getCycles(records: Number) {
-    return this.http.get<any>(this.path + 'operations/cycles/' + records);
+    return this.http.get<any>(this.path + 'cycles/' + records);
   }
 
   createUpdateOperation(operation: Operation) {
@@ -77,7 +73,7 @@ export class AccountService {
       cycleId: operation._id,
     };
 
-    return this.http.post(this.path + 'operations/create', tempOperation);
+    return this.http.post(this.path + 'create', tempOperation);
   }
 
   updateOperation(operation: Operation) {
@@ -89,26 +85,11 @@ export class AccountService {
       description: operation.description
     };
 
-    return this.http.put(this.path + 'operations/update', tempOperation);
+    return this.http.put(this.path + 'update', tempOperation);
   }
 
   deleteOperation(id: string) {
-    return this.http.delete<any>(this.path + 'operations/delete/' + id);
+    return this.http.delete<any>(this.path + 'delete/' + id);
   }
 
-  changeEmail(email: string) {
-    const temp = {
-      email: email,
-    };
-
-    return this.http.post(this.path + 'operations/changeEmail', temp);
-  }
-
-  changePassword(password: string) {
-    const temp = {
-      password: password,
-    };
-
-    return this.http.post(this.path + 'operations/changePassword', temp);
-  }
 }

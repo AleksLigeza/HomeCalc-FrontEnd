@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterData, LoginData } from '../models/login';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-welcome',

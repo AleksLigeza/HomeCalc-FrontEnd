@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { AccountSummary } from './models/accountSummary';
-import { Operation } from './models/operation';
-import { LoginData, RegisterData } from './models/login';
+import { AccountSummary } from '../models/accountSummary';
+import { Operation } from '../models/operation';
+import { LoginData, RegisterData } from '../models/login';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';

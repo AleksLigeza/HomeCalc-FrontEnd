@@ -2,9 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AccountService } from '../account.service';
+import { OperationsService } from '../services/operations.service';
 import { Operation } from '../models/operation';
-import { AlertService } from '../alert.service';
+import { AlertService } from '../services/alert.service';
 import { operators } from 'Rxjs';
 import { Router } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class OperationDetailsComponent implements OnInit {
   badRoute: boolean;
 
   constructor(
-    private accountService: AccountService,
+    private operationsService: OperationsService,
     private route: ActivatedRoute,
     private location: Location,
     private alertService: AlertService,
@@ -47,17 +47,17 @@ export class OperationDetailsComponent implements OnInit {
   getDetails() {
     const id: string = this.route.snapshot.paramMap.get('id');
 
-    if (id === 'new' || id === 'newCycle') { // create new operation
+    if (id === 'new' || id === 'newCycle') {
       this.operation = new Operation(id);
 
-      if (id === 'newCycle') { // for cyclic operation set parameter
+      if (id === 'newCycle') {
         this.operation.cyclic = true;
         this.operation._id = '0';
       } else {
         this.operation._id = '-1';
       }
-    } else { // load existing operation from database
-      this.accountService.getDetails(id).subscribe(
+    } else {
+      this.operationsService.getDetails(id).subscribe(
         res => {
           this.operation = res;
           if (res['cycleId'] === '0') {
@@ -81,10 +81,10 @@ export class OperationDetailsComponent implements OnInit {
       return;
     }
 
-    this.accountService.createUpdateOperation(this.operation)
+    this.operationsService.createUpdateOperation(this.operation)
       .subscribe(res => {
+        this.alertService.info('Operacja zapisana', true);
         this.goBack();
-        this.alertService.info('Operacja zapisana');
       },
       err => {
         if (err.status === 500) {
@@ -94,11 +94,11 @@ export class OperationDetailsComponent implements OnInit {
   }
 
   delete(): void {
-    this.accountService.deleteOperation(this.operation._id)
+    this.operationsService.deleteOperation(this.operation._id)
       .subscribe(
       res => {
+        this.alertService.info('Operacja usunięta', true);
         this.goBack();
-        this.alertService.info('Operacja usunięta');
       },
       err => {
         this.alertService.error('Błąd usuwania operacji!');
@@ -110,7 +110,7 @@ export class OperationDetailsComponent implements OnInit {
   }
 
   getCycleOperations(id: string) {
-    this.accountService.getCycleOperations(this.operation._id).subscribe(
+    this.operationsService.getCycleOperations(this.operation._id).subscribe(
       res => {
         this.connectedOperations = res;
       },
