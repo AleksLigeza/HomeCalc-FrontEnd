@@ -3,6 +3,7 @@ import { Operation } from '../models/operation';
 import { Router } from '@angular/router';
 import { OperationsService } from '../services/operations.service';
 import { AlertService } from '../services/alert.service';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-operation-list',
@@ -13,6 +14,7 @@ export class OperationListComponent implements OnInit {
 
   @Input() list: Operation[];
   @Input() listTitle: string;
+  @Input() parent: DashboardComponent;
 
   constructor(
     private router: Router,
@@ -37,6 +39,10 @@ export class OperationListComponent implements OnInit {
         const index = this.list.indexOf(operation, 0);
         if (index > -1) {
           this.list.splice(index, 1);
+        }
+
+        if (this.parent) {
+          this.parent.summaryInstance.getSummary();
         }
       },
       err => {

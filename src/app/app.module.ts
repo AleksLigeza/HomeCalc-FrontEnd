@@ -22,7 +22,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { TruncatePipe } from './trancuatePipe';
 import { ErrorComponent } from './error/error.component';
 import { OperationsService } from './services/operations.service';
-
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +43,7 @@ import { OperationsService } from './services/operations.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    LoadingBarHttpClientModule
   ],
   providers: [
     {

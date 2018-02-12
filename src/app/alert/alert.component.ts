@@ -19,7 +19,7 @@ export class AlertComponent implements OnInit {
           this.alerts = [];
           return;
       }
-      console.log(alert);
+
       if (alert.keep) {
         this.alerts = [];
       }

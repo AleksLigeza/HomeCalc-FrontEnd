@@ -1,4 +1,4 @@
-<app-summary></app-summary>
+<app-summary [parent]="instance"></app-summary>
 
 <div class="row justify-content-center mb-3 buttons">
     <div class="col-6 operation-button">
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<app-operation-list [list]='historyShortcut' [listTitle]="'Ostatnie operacje'"></app-operation-list>
+<app-operation-list [parent]="instance" [list]='historyShortcut' [listTitle]="'Ostatnie operacje'"></app-operation-list>
 
 <div class="row mb-3">
     <div class="col-12">

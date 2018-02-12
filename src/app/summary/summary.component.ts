@@ -3,6 +3,8 @@ import { OperationsService } from '../services/operations.service';
 import { AccountSummary, AccountSummaryDiffrence } from '../models/accountSummary';
 import { AlertService } from '../services/alert.service';
 import { isNgContainer } from '@angular/compiler';
+import { Input } from '@angular/core';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-summary',
@@ -10,6 +12,7 @@ import { isNgContainer } from '@angular/compiler';
   styleUrls: ['./summary.component.css']
 })
 export class SummaryComponent implements OnInit {
+  @Input() parent: DashboardComponent;
   summary: AccountSummary;
   diffrence: AccountSummaryDiffrence;
 
@@ -19,6 +22,7 @@ export class SummaryComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.parent.summaryInstance = this;
     this.summary = new AccountSummary();
     this.diffrence = new AccountSummaryDiffrence(this.summary);
     this.getSummary();

@@ -26,7 +26,7 @@
                     <input #emailField="ngModel" required email maxlength="50" class="form-control" name="emailField" placeholder="Email" aria-describedby="emailField-addon"
                       [(ngModel)]="email" [class.is-invalid]="emailField.invalid && emailField.touched">
                     <div class="invalid-feedback">
-                      Poprawny email jest wymagany
+                      Nieprawidłowy adres email
                     </div>
                   </div>
                 </div>
@@ -68,7 +68,7 @@
                     <input #passwordSecond="ngModel" required minlength="5" maxlength="50" type="password" class="form-control" name="passwordSecond"
                       placeholder="Powtóz hasło" aria-describedby="passwordSecond-addon" [(ngModel)]="passwordRepeat" [class.is-invalid]="passwordSecond.dirty && (passwordSecond.invalid || !(password === passwordRepeat))">
                     <div class="invalid-feedback">
-                      Podane dane nie są zgodne
+                      Podane hasła nie są zgodne
                     </div>
                   </div>
                 </div>
