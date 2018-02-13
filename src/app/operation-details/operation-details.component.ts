@@ -19,6 +19,7 @@ export class OperationDetailsComponent implements OnInit {
   connectedOperations: Operation[];
 
   badRoute: boolean;
+  loadedId: string;
 
   constructor(
     private operationsService: OperationsService,
@@ -47,6 +48,10 @@ export class OperationDetailsComponent implements OnInit {
   getDetails() {
     const id: string = this.route.snapshot.paramMap.get('id');
 
+    if (id === this.loadedId) {
+      return;
+    }
+
     if (id === 'new' || id === 'newCycle') {
       this.operation = new Operation(id);
 
@@ -60,6 +65,7 @@ export class OperationDetailsComponent implements OnInit {
       this.operationsService.getDetails(id).subscribe(
         res => {
           this.operation = res;
+          this.loadedId = id;
           if (res['cycleId'] === '0') {
             this.operation.cyclic = true;
             this.getCycleOperations(this.operation._id);
