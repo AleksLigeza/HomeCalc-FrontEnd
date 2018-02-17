@@ -65,6 +65,7 @@ export class OperationDetailsComponent implements OnInit {
       this.operationsService.getDetails(id).subscribe(
         res => {
           this.operation = res;
+          Operation.normalize(this.operation, res.income, res.id);
           this.loadedId = id;
           if (res['cycleId'] === '0') {
             this.operation.cyclic = true;
@@ -92,23 +93,23 @@ export class OperationDetailsComponent implements OnInit {
         this.alertService.info('Operacja zapisana', true);
         this.goBack();
       },
-      err => {
-        if (err.status === 500) {
-          this.alertService.error('Błędne dane!');
-        }
-      });
+        err => {
+          if (err.status === 500) {
+            this.alertService.error('Błędne dane!');
+          }
+        });
   }
 
   delete(): void {
     this.operationsService.deleteOperation(this.operation._id)
       .subscribe(
-      res => {
-        this.alertService.info('Operacja usunięta', true);
-        this.goBack();
-      },
-      err => {
-        this.alertService.error('Błąd usuwania operacji!');
-      });
+        res => {
+          this.alertService.info('Operacja usunięta', true);
+          this.goBack();
+        },
+        err => {
+          this.alertService.error('Błąd usuwania operacji!');
+        });
   }
 
   onSelectType(type: boolean): void {
@@ -118,7 +119,7 @@ export class OperationDetailsComponent implements OnInit {
   getCycleOperations(id: string) {
     this.operationsService.getCycleOperations(this.operation._id).subscribe(
       res => {
-        this.connectedOperations = res;
+        this.connectedOperations = Operation.createArray(res);
       },
       err => {
         this.alertService.error('Błąd ładowania operacji');

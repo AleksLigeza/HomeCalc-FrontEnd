@@ -15,4 +15,20 @@ export class Operation {
         this.description = '';
         this.cyclic = false;
     }
+
+    static createArray(res): Operation[] {
+
+        let result: Operation[];
+        result = res;
+
+        result.forEach((value, index) => {
+            Operation.normalize(value, res[index].income, res[index].id);
+        });
+        return result;
+    }
+
+    static normalize(operation: Operation, type, id: number) {
+        operation.income = (type === '1') || (type === true);
+        operation._id = id.toString();
+    }
 }

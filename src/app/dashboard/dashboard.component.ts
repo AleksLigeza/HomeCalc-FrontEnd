@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   loadHistoryShortcut() {
     this.operationsService.getHistory(0).subscribe(
       res => {
-        this.historyShortcut = res;
+        this.historyShortcut = Operation.createArray(res);
       },
       err => {
         this.alert.error('Błąd ładowania operacji');

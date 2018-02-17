@@ -15,7 +15,8 @@ export class AuthService {
     public router: Router,
     private alertService: AlertService) { }
 
-  path = 'http://localhost:3000/auth';
+  // path = 'http://localhost:3000/auth';
+  path = 'http://localhost/Homecalc-PHPBackEnd/auth';
   TOKEN_KEY = 'token';
 
   get token() {
@@ -32,15 +33,18 @@ export class AuthService {
         email: loginData.email,
         password: loginData.password
       }).subscribe(
-      res => {
-        this.saveToken(res['token']);
-        this.router.navigate(['/dashboard']);
-      },
-      err => {
-        if (err.status === 401) {
-          this.alertService.error('Błędny email lub hasło!');
-        }
-      });
+        res => {
+          this.saveToken(res['token']);
+          if (this.token === 'undefined') {
+            this.saveToken(res);
+          }
+          this.router.navigate(['/dashboard']);
+        },
+        err => {
+          if (err.status === 401) {
+            this.alertService.error('Błędny email lub hasło!');
+          }
+        });
   }
 
   register(registerData: RegisterData) {
@@ -50,13 +54,16 @@ export class AuthService {
         password: registerData.password
       }).subscribe(res => {
         this.saveToken(res['token']);
+        if (this.token === 'undefined') {
+          this.saveToken(res);
+        }
         this.router.navigate(['/dashboard']);
       },
-      err => {
-        if (err.status === 500) {
-          this.alertService.error('Błędne dane!');
-        }
-      });
+        err => {
+          if (err.status === 500) {
+            this.alertService.error('Błędne dane!');
+          }
+        });
   }
 
   logOut() {

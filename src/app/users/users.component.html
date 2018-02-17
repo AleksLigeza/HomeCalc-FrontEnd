@@ -1,0 +1,81 @@
+<div class="form-box mb-3">
+  <div class="form-top-simple">
+    <h3>
+      <b>Panel Administratora</b>
+    </h3>
+  </div>
+  <div class="form-bottom">
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Email</th>
+          <th scope="col">Hasło</th>
+          <th scope="col">Operacje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="list-item" *ngFor="let user of list">
+          <td>
+            {{user.user_id}}
+          </td>
+          <td>
+            {{user.email}}
+          </td>
+          <td>
+            {{user.password | truncate:[25, '...'] }}
+          </td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="showUserDetails(user.user_id)">
+              <i class="fas fa-cog "></i>
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.user_id)">
+              <i class="fas fa-minus"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="form-box" *ngIf="details">
+  <div class="form-top-simple">
+    <h3>
+      <b>Szczegóły   ID: {{details.user_id}}</b>
+    </h3>
+  </div>
+  <div class="form-bottom">
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Email</span>
+      </div>
+      <input minlength="5" maxlength="50" class="form-control" name="email" placeholder="Email" [(ngModel)]="details.email">
+    </div>
+
+    <div class="input-group mb-2">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Hasło</span>
+      </div>
+      <input minlength="5" maxlength="50" class="form-control" name="password" placeholder="Hasło" [(ngModel)]="details.password">
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-info btn-block" (click)="details = null">
+          <i class="fas fa-arrow-left"></i> Powrót</button>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-danger btn-block" (click)="deleteUser(details.user_id)">
+          <i class="fas fa-trash-alt"></i> Usuń</button>
+      </div>
+      <div class="col-xs-12 col-sm-4">
+        <button type="button" class="btn btn-success btn-block" (click)="updateUser()">
+          <i class="fas fa-save"></i> Zapisz</button>
+      </div>
+    </div>
+  </div>
+</div>

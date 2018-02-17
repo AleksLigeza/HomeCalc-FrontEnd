@@ -10,7 +10,7 @@ export class OperationsService {
   constructor( private http: HttpClient,
     private alertService: AlertService) { }
 
-  path = 'http://localhost:3000/operations/';
+  path = 'http://localhost/Homecalc-PHPBackEnd/operations/';
 
   getSummary() {
     return this.http.get<any>(this.path + 'summary');
@@ -64,9 +64,10 @@ export class OperationsService {
   }
 
   createOperation(operation: Operation) {
+    operation.date.setUTCHours(12, 0, 0, 0);
     const tempOperation = {
       id: 0,
-      date: operation.date,
+      date: operation.date.toISOString(),
       income: operation.income,
       amount: operation.amount,
       description: operation.description,

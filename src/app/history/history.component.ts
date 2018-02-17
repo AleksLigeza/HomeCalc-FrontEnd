@@ -37,7 +37,7 @@ export class HistoryComponent implements OnInit {
   getHistory() {
     this.operationsService.getHistory(this.records).subscribe(
       res => {
-        this.addHistoryElements(res);
+        this.addHistoryElements(Operation.createArray(res));
       },
       err => {
         this.alert.error('Błąd ładowania operacji');
@@ -49,12 +49,11 @@ export class HistoryComponent implements OnInit {
     this.filtersApplied = true;
     let tempFilters: HistoryFilters;
     tempFilters = Object.create(this.filters);
-
     tempFilters.removeNulls();
 
     this.operationsService.getHistoryWithFilters(this.records, tempFilters).subscribe(
       res => {
-        this.addHistoryElements(res);
+        this.addHistoryElements(Operation.createArray(res));
       },
       err => {
         this.alert.error('Błąd ładowania operacji');

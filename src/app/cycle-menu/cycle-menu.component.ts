@@ -31,7 +31,7 @@ export class CycleMenuComponent implements OnInit {
   getCycles() {
     this.operationsService.getCycles(this.records).subscribe(
       res => {
-        this.cycles = this.cycles.concat(res);
+        this.cycles = this.cycles.concat(Operation.createArray(res));
         this.enableCycleProperty();
 
         if (this.count !== -1) {

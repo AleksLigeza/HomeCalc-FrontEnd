@@ -16,7 +16,7 @@ export class HistoryFilters {
         tempDate.setUTCHours(0, 0, 0, 1);
         this.dateSince = tempDate;
         tempDate = new Date();
-        tempDate.setUTCFullYear(2100, null, null);
+        tempDate.setUTCFullYear(2030, null, null);
         tempDate.setUTCHours(23, 59, 59, 999);
         this.dateTo = tempDate;
 

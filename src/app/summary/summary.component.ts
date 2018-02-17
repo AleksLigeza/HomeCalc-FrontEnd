@@ -32,6 +32,9 @@ export class SummaryComponent implements OnInit {
     this.operationsService.getSummary().subscribe(
       res => {
         this.summary = res;
+        if (this.summary.bills === undefined) {
+          this.summary = res['data'];
+        }
         this.diffrence = new AccountSummaryDiffrence(res);
       },
       err => {

@@ -32,7 +32,7 @@ export class SettingsComponent implements OnInit {
   changePassword(): void {
     this.accountService.changePassword(this.password).subscribe(
       res => {
-        this.alertService.info('Hasło zmienione');
+        this.alertService.info('Hasło zmienione', true);
         this.goBack();
       },
       err => {

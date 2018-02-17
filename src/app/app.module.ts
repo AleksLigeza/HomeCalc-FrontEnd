@@ -23,6 +23,8 @@ import { TruncatePipe } from './trancuatePipe';
 import { ErrorComponent } from './error/error.component';
 import { OperationsService } from './services/operations.service';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { UsersComponent } from './users/users.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
     WelcomeComponent,
     SettingsComponent,
     TruncatePipe,
-    ErrorComponent
+    ErrorComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
