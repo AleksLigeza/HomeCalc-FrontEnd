@@ -51,6 +51,16 @@ export class HistoryComponent implements OnInit {
     tempFilters = Object.create(this.filters);
     tempFilters.removeNulls();
 
+    tempFilters.description = tempFilters.description.replace(/ę/ig, 'e');
+    tempFilters.description = tempFilters.description.replace(/ż/ig, 'z');
+    tempFilters.description = tempFilters.description.replace(/ó/ig, 'o');
+    tempFilters.description = tempFilters.description.replace(/ł/ig, 'l');
+    tempFilters.description = tempFilters.description.replace(/ć/ig, 'c');
+    tempFilters.description = tempFilters.description.replace(/ś/ig, 's');
+    tempFilters.description = tempFilters.description.replace(/ź/ig, 'z');
+    tempFilters.description = tempFilters.description.replace(/ń/ig, 'n');
+    tempFilters.description = tempFilters.description.replace(/ą/ig, 'a');
+
     this.operationsService.getHistoryWithFilters(this.records, tempFilters).subscribe(
       res => {
         this.addHistoryElements(Operation.createArray(res));
