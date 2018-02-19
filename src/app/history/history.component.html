@@ -85,8 +85,8 @@
         </div>
       </div>
       <div class = "row justify-content-center" >
-      <button type="button" class="btn btn-info col-5 btn-bold" (click)="this.resetHistory();getHistoryWithFilters()">Filtruj</button>
-      <button type="button" class="btn btn-secondary col-5  btn-bold" (click)="clearFilters();resetHistory();getHistory()">Wyczyść</button>
+      <button type="button" class="btn btn-info col-5 btn-bold" (click)="allowResetHistory();getHistoryWithFilters()">Filtruj</button>
+      <button type="button" class="btn btn-secondary col-5  btn-bold" (click)="clearFilters();allowResetHistory();getHistory()">Wyczyść</button>
     </div> </div>
   </div>
   <app-operation-list [list]='history' [listTitle]="'Historia operacji'"></app-operation-list>

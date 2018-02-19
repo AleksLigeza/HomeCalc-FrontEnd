@@ -16,12 +16,10 @@ export class HistoryComponent implements OnInit {
   filtersApplied: boolean;
   history: Operation[];
   count: number;
-
+  records: number;
+  shouldResetHistory: boolean;
+  
   filters: HistoryFilters;
-
-  get records() {
-    return this.history.length;
-  }
 
   constructor(
     private operationsService: OperationsService,
@@ -72,7 +70,12 @@ export class HistoryComponent implements OnInit {
   }
 
   addHistoryElements(res: Operation[]) {
+    if (this.shouldResetHistory) {
+      this.resetHistory();
+    }
+
     this.history = this.history.concat(res);
+    this.records = this.history.length;
 
     if (this.count !== -1) {
       if (this.records !== this.count) {
@@ -104,10 +107,18 @@ export class HistoryComponent implements OnInit {
 
   resetHistory() {
     this.history = [];
+    this.records = 0;
     this.count = -1;
+    this.shouldResetHistory = false;
   }
 
   changeType(type: number) {
     this.filters.type = type;
+  }
+
+  allowResetHistory() {
+    this.shouldResetHistory = true;
+    this.records = 0;
+    this.count = -1;
   }
 }
